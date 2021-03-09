@@ -56,8 +56,8 @@
         </div>
         @endif
         
-        @if ($model->comments)
-            @foreach ($model->comments as $comment)
+        @if ($comments)
+            @foreach ($comments as $comment)
                 <div class="media mb-4">
                     <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                     <div class="media-body">

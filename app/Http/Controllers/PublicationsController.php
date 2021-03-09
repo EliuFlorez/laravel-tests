@@ -72,10 +72,14 @@ class PublicationsController extends Controller
         $userId = Auth::id();
 
         $model = Publication::find($id);
-        $commentUser = $model->comments()->where('user_id', $userId)->first();
-        $commentLikes = $model->comments()->where('content', 'LIKE', '%Hola%')->get();
+        $comments = $model->comments()->->where('status', '=', 'APROBADO')->get();
+		$commentUser = $model->comments()->where('user_id', $userId)->first();
+        $commentLikes = $model->comments()
+			->where('content', 'LIKE', '%Hola%')
+			->where('status', '=', 'APROBADO')
+			->get();
 
-        return view('publications.show', compact('model', 'commentUser', 'commentLikes'));
+        return view('publications.show', compact('model', 'comments', 'commentUser', 'commentLikes'));
     }
 
     /**
